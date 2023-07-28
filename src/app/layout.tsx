@@ -17,14 +17,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body >
+    
+    <html lang="en" className="dark">
+      <body className={inter.className}>
         <MainNav />
-        <div className="flex min-h-screen flex-col items-center justify-between lg:pl-72 bg-gray-900">
-          <div className="ml-auto mr-auto w-full max-w-4xl space-y-8 px-2 pt-20 lg:py-8 lg:px-8
+        <div className="flex min-h-screen flex-col items-center justify-between lg:pl-72 bg-neutral-accent transition-all duration-600">
+          <div className="ml-auto mr-auto w-full max-w-4xl space-y-8 px-2 pt-20 lg:py-2 lg:px-8
           ">
-            <div className="mt-16 bg-black 
-            rounded-xl border border-slate-700 shadow-md">
+            <div className="mt-16 bg-neutral-bg
+            rounded-xl border border-neutral shadow-md">
              {children}
             </div>
           </div>

@@ -13,6 +13,15 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'neutral': 'var(--neutral)',
+        'neutral-bg': 'var(--neutral-bg)',
+        'neutral-contrast': 'var(--neutral-contrast)',
+        'neutral-accent': 'var(--neutral-accent)',
+        'accent': 'var(--accent)',
+        'accent-2': 'var(--accent-2)',
+        'hovercolor': 'var(--hovercolor)'
+      }
     },
   },
   plugins: [],

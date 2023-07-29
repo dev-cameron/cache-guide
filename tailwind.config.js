@@ -20,6 +20,7 @@ module.exports = {
         'neutral-accent': 'var(--neutral-accent)',
         'accent': 'var(--accent)',
         'accent-2': 'var(--accent-2)',
+        'accent-light': 'var(--accent-light)',
         'hovercolor': 'var(--hovercolor)'
       }
     },

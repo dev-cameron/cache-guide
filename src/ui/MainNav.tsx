@@ -35,11 +35,12 @@ export default function MainNav() {
     }
   }
 
+
+  // border-none lg:border-solid lg:border-r lg:border-neutral
   return (
     <div className="fixed top-0 flex flex-col w-full z-10
-        lg:w-72 lg:bottom-0 bg-neutral-bg border-none 
-        lg:border-solid lg:border-r lg:border-neutral
-        transition-all duration-600"
+        lg:w-72 lg:bottom-0 bg-neutral-bg 
+        transition-all duration-200"
       >
       <div 
       className="flex flex-row items-center justify-between 

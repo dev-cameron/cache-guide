@@ -9,16 +9,16 @@ export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState('light')
 
-  const bodyItems = items.map((section) => {
+  const bodyItems = items.map((section, index) => {
     return ( 
-    <div className="py-4 pl-4">
+    <div className="py-4 pl-4" key={index}>
       <div className="text-lg text-neutral">
         {section.name}
       </div>
       {
-        section.items.map((item) => {
+        section.items.map((item, itemIndex) => {
           return (
-            <div className="text-neutral-contrast py-2 font-bold ">
+            <div className="text-neutral-contrast py-2 font-bold" key={itemIndex}>
               <Link className="hover:text-hovercolor" href={item.slug}>{item.name}</Link>
             </div>
           )

@@ -27,6 +27,7 @@ interface ControlBoxProps {
   updateActiveFrame: (forward: boolean) => void;
 }
 
+// debounce function to prevent too many calls to getPosition
 function debounce(func, wait: number) {
   let timeout: NodeJS.Timeout;
   return function(...args) {
@@ -51,7 +52,7 @@ const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenar
 
   /*
   * getPosition finds the X offset of the current activeNode (client, cache, or server div)
-  * updates X position of HTTP obj div to align with activeNode
+  * updates X position of our HTTP obj div to align with activeNode
   */
   const getPosition = useCallback(() => {
     const calculateOffset = (ref: React.RefObject<HTMLDivElement>) => {
@@ -80,6 +81,7 @@ const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenar
     }
   }, [activeNode]);
 
+  // debounce getPosition to prevent too many calls, useCallback
   const debouncedGetPosition = useCallback(debounce(()=> getPosition(), 100), [getPosition]);
 
   useEffect(() => {
@@ -96,11 +98,11 @@ const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenar
   }, [debouncedGetPosition]);
 
   return (
-    <div className=" relative flex items-center h-60 w-full lg:w-1/2 bg-neutral-bg rounded-lg">
+    <div className=" relative flex items-center h-28 w-full bg-neutral-bg rounded-lg">
       <div>
-      <h2 className="absolute top-2 left-2 text-white">X: {x ?? "No result"}</h2>
-      <h2 className="absolute top-2 left-20 text-white">active: {activeNode ?? "No result"}</h2>
-      <h2 className="absolute top-2 left-60 text-white">frame: {activeFrame ?? "No result"}</h2>
+        <h2 className="absolute top-2 left-2 text-white">X: {x ?? "No result"}</h2>
+        <h2 className="absolute top-2 left-20 text-white">active: {activeNode ?? "No result"}</h2>
+        <h2 className="absolute top-2 left-60 text-white">frame: {activeFrame ?? "No result"}</h2>
       </div>
       {/* "relative flex items-center w-full h-20 text-neutral-contrast" */}
       <div className="relative flex items-center w-full h-20 text-neutral-contrast">
@@ -139,7 +141,7 @@ const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenar
 
 const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
   return (
-    <div className="flex h-60 w-full lg:w-1/2 bg-neutral-bg rounded-lg py-2 px-2">
+    <div className="flex h-60 w-full bg-neutral-bg rounded-lg py-2 px-2">
       <div className="flex flex-col bg-neutral-accent w-1/2 rounded-lg">
         <div className="text-neutral-contrast font-bold">
           { activeScenario.frames[activeFrame].type }
@@ -223,10 +225,13 @@ export default function VisualizerContainer( { children, directive, frames }: Vi
   return (
     <div className="w-auto rounded-lg overflow-hidden bg-neutral-accent p-2 drop-shadow">
       <div className="flex flex-col w-auto lg:flex-row space-y-2 lg:space-x-2 lg:space-y-0">
-        <AnimBox activeNode={activeNode} activeFrame={activeFrame} activeScenario={activeScenario}/>
+        
         <InfoBox activeScenario={activeScenario} activeFrame={activeFrame}/>
       </div>
+      <AnimBox activeNode={activeNode} activeFrame={activeFrame} activeScenario={activeScenario}/>
+
       <ControlBox toggleActiveNode={toggleActiveNode} updateActiveFrame={updateActiveFrame} />
+
     </div>
   )
 }

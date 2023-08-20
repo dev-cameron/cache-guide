@@ -20,9 +20,9 @@
     --neutral: #888c93;
     --neutral-accent: #e2e3e4;
     --neutral-contrast: #4d525d;
-    --accent: #6cdd87;
-    --accent-2: #16a34a; 
-    --accent-light: #166534;
+    --accent: #16a34a;
+    --accent-2: #166534;
+    --accent-light: #6cdd87;
     --hovercolor: #888c93;
   }
 }
@@ -30,3 +30,7 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+/* --accent: #6cdd87;
+--accent-2: #16a34a; 
+--accent-light: #166534; */

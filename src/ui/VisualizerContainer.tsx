@@ -142,11 +142,11 @@ const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenar
 const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
   return (
     <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:space-x-4 w-full rounded-lg py-2 px-2">
-      <div className="flex flex-col bg-neutral-contrast h-48 lg:w-1/2 rounded-lg p-4 drop-shadow-xl">
+      <div className="flex flex-col bg-neutral-contrast h-32 lg:h-48 lg:w-1/2 rounded-lg py-2 px-4 drop-shadow-xl">
         <div className="text-neutral-accent font-bold">
           { activeScenario.frames[activeFrame].type }
         </div>
-        <div className="text-neutral-accent mt-4">
+        <div className="text-neutral-accent">
         { 
           Object.entries(activeScenario.frames[activeFrame].httpObj.headers).map(([key, value]) => (
             <p key={key}>{`${key}: ${value}`}</p>
@@ -155,11 +155,11 @@ const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
         </div>
 
       </div>
-      <div className="flex flex-col bg-neutral-contrast h-48 lg:w-1/2 rounded-lg p-4 drop-shadow-xl">
+      <div className="flex flex-col bg-neutral-contrast h-32 lg:h-48 lg:w-1/2 rounded-lg py-2 px-4 drop-shadow-xl">
         <div className="text-neutral-accent font-bold">
           What's happening?
         </div>
-        <div className="text-neutral-accent mt-4 overflow-y-auto">
+        <div className="text-neutral-accent overflow-y-auto">
           { activeScenario.frames[activeFrame].description }
         </div>
       </div>
@@ -170,8 +170,8 @@ const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
 const ControlBox: React.FC<ControlBoxProps> = ( { updateActiveFrame, toggleActiveNode } ) => {
   return (
     <div className="flex items-center justify-left space-x-2 w-full h-10 rounded-lg mx-2">
-      <button className="rounded-lg bg-neutral-contrast hover:contrast-150 py-1 px-2 drop-shadow-xl"onClick={()=>updateActiveFrame(false)}>prev</button>
-      <button className="rounded-lg bg-neutral-contrast hover:contrast-150 py-1 px-2 drop-shadow-xl"onClick={()=>updateActiveFrame(true)}>next</button>
+      <button className="text-neutral-accent rounded-lg bg-neutral-contrast hover:contrast-150 py-1 px-2 drop-shadow-xl"onClick={()=>updateActiveFrame(false)}>prev</button>
+      <button className="text-neutral-accent rounded-lg bg-neutral-contrast hover:contrast-150 py-1 px-2 drop-shadow-xl"onClick={()=>updateActiveFrame(true)}>next</button>
       {/* <button className="rounded-lg bg-accent hover:bg-accent-2 py-1 px-2"onClick={()=>toggleActiveNode()}>toggle</button> */}
     </div>
   )

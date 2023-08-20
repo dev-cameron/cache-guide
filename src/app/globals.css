@@ -18,8 +18,10 @@
   .light {
     --neutral-bg: white;
     --neutral: #888c93;
+    /* --neutral-accent: #4d525d;
+    --neutral-contrast: #e2e3e4; */
     --neutral-accent: #e2e3e4;
-    --neutral-contrast: #4d525d;
+    --neutral-contrast: #4d525d; 
     --accent: #16a34a;
     --accent-2: #166534;
     --accent-light: #6cdd87;

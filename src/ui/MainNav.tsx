@@ -19,7 +19,8 @@ export default function MainNav() {
         section.items.map((item, itemIndex) => {
           return (
             <div className="text-neutral-contrast py-2 font-bold" key={itemIndex}>
-              <Link className="hover:text-hovercolor" href={item.slug}>{item.name}</Link>
+              <Link className="hover:text-hovercolor" href={`/${item.slug}`}>{item.name}</Link> 
+              {/* use template literal for href w/ root prepended. just using item.slug will append slug to current route, not root */}
             </div>
           )
       })

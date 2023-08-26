@@ -1,24 +1,17 @@
-# What does it mean?  
+### cache-control: max-age
+### Keeps your content cached, as long as it's _fresh_  
+\
+**max-age=N**: means the response data remains fresh until N seconds after it’s generated. Note “generated” refers to when the origin server generated the response. 
+If there are additional layers between the origin server where the response was generated, and the destination client, Age will be increased for the time the response spent at each step (on the **Age** header)
 
-response remains fresh until N seconds after it’s generated. Note “generated” refers to when the origin server generated the response. if there are interim layers that store the response, that time is added (on Age response)
-
-
-[RFC 9111: HTTP Caching (rfc-editor.org)](https://www.rfc-editor.org/rfc/rfc9111#name-freshness)
-
-
-Fresh = responses **age** has not exceeded it’s **freshness lifetime**
-
-
-Per RFC, `response_is_fresh = (freshness_lifetime > current_age)`  
-
-
-> **Good to know**: `<a>` tag attributes such as `className` or `target="_blank"` can be added to `<Link>` as props and will be passed to the underlying `<a>` element.
-
-
-I **love** using [Next.js](https://nextjs.org/)  
-
-Some `backticks` for inline.
+**Fresh** = responses **age** has not exceeded it’s **freshness lifetime**
 
 ```js
-backtick.fences('for blocks')
+response_is_fresh = (freshness_lifetime > current_age) 
 ```
+
+[Per RFC,  9111: HTTP Caching (rfc-editor.org)](https://www.rfc-editor.org/rfc/rfc9111#name-freshness)
+
+
+
+export default ({children}) => <div className='prose prose-slate dark:prose-invert'>{children}</div>

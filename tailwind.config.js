@@ -41,7 +41,13 @@ module.exports = {
             '--tw-prose-invert-code': theme('colors.neutral-contrast'),
             // '--tw-prose-invert-bold': 'var(--accent)',
           }
-        }
+        },
+        "quoteless": {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
       })
     },
   },

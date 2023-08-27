@@ -157,7 +157,7 @@ const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
         <div className="text-white font-bold">
           HTTP Message Type: <span className="px-2 rounded-md bg-neutral text-white shadow-inner">{ activeScenario.frames[activeFrame].type }</span>
         </div>
-        <div className="h-full my-1 p-1 rounded-md bg-neutral text-white font-mono text-sm">
+        <div className="h-full my-1 p-1 rounded-md bg-neutral text-white font-mono text-sm overflow-y-auto">
         { 
           Object.entries(activeScenario.frames[activeFrame].httpObj.headers).map(([key, value]) => (
             <p key={key}>{`${key}: ${value}`}</p>
@@ -171,7 +171,12 @@ const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
           What&apos;s happening?
         </div>
         <div className="text-white text-sm overflow-y-auto">
-          { activeScenario.frames[activeFrame].description }
+          { activeScenario.frames[activeFrame].description.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            <br />
+          </React.Fragment> )
+          )}
         </div>
       </div>
     </div>
@@ -192,7 +197,7 @@ const ControlBox: React.FC<ControlBoxProps> = ( { updateActiveFrame, toggleActiv
     <div className="flex items-center justify-left space-x-2 w-full h-10 rounded-lg mx-2">
       <button className="border border-neutral text-white rounded-lg bg-neutral-accent hover:contrast-150 py-1 px-2 drop-shadow-xl"onClick={()=>updateActiveFrame(false)}>prev</button>
       <button className="border border-neutral text-white rounded-lg bg-neutral-accent hover:contrast-150 py-1 px-2 drop-shadow-xl"onClick={()=>updateActiveFrame(true)}>next</button>
-      <div className="flex space-x-2 pl-4">
+      <div className="flex space-x-2 pl-2">
         {frameDots}
       </div>
     </div>

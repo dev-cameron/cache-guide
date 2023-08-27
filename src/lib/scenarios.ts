@@ -51,6 +51,79 @@ export const cacheScenarios: ScenarioGroup = {
           }
         }
       },
+      {
+        activeNode: 'clientRef',
+        type: 'response',
+        description: 'Browser receives the response from the server and stores the script, stylesheet, and image in its cache along with the "max-age" directive.',
+        httpObj: {
+          headers: {
+            'response': '200 OK',
+            'cache-control': 'max-age=3600',
+          }
+        }
+      },
+      {
+        activeNode: 'clientRef',
+        type: 'request',
+        description: '...Let\'s say 30min have passed (still within 1hr max-age). \nClient makes a subsequent request for the same script, stylesheet, and image within the "max-age" timeframe.',
+        httpObj: {
+          headers: {
+            'request': 'GET /script-v1.js, GET /styles-v1.css, GET /cats-v1.jpg',
+          }
+        }
+      },
+      {
+        activeNode: 'cacheRef',
+        type: 'request',
+        description: 'Browser checks its cache for the script, stylesheet, and image in response to the subsequent request and finds them within the "max-age" timeframe.',
+        httpObj: {
+          headers: {
+            'request': 'GET /script-v1.js, GET /styles-v1.css, GET /cats-v1.jpg',
+          }
+        }
+      },
+      {
+        activeNode: 'clientRef',
+        type: 'request',
+        description: '...2 hours have passed. \n\nClient makes a request for the same script, stylesheet, and image after the "max-age" timeframe has passed.',
+        httpObj: {
+          headers: {
+            'request': 'GET /script-v1.js, GET /styles-v1.css, GET /cats-v1.jpg',
+          }
+        }
+      },
+      {
+        activeNode: 'cacheRef',
+        type: 'request',
+        description: 'Browser checks its cache for the script, stylesheet, and image after the "max-age" timeframe has passed and finds that they are now considered stale.',
+        httpObj: {
+          headers: {
+            'request': 'GET /script-v1.js, GET /styles-v1.css, GET /cats-v1.jpg',
+          }
+        }
+      },
+      {
+        activeNode: 'serverRef',
+        type: 'response',
+        description: 'Since the cached resources are now stale, the browser sends a request to the server for the script, stylesheet, and image.',
+        httpObj: {
+          headers: {
+            'response': '200 OK',
+            'cache-control': 'max-age=3600',
+          }
+        }
+      },
+      {
+        activeNode: 'clientRef',
+        type: 'response',
+        description: 'The server responds with the latest versions of the script, stylesheet, and image. The browser updates its cache with these new versions.',
+        httpObj: {
+          headers: {
+            'response': '200 OK',
+            'cache-control': 'max-age=3600', // Optionally, the server may specify a new "max-age" directive.
+          }
+        }
+      },
     ],
     description: 'The max-age directive is the simplest way to specify how long a resource should be cached. It is a relative time in seconds from the time of the request.'
   }

@@ -1,17 +1,26 @@
-### cache-control: max-age
-### Keeps your content cached, as long as it's _fresh_  
-\
-**max-age=N**: means the response data remains fresh until N seconds after it’s generated. Note “generated” refers to when the origin server generated the response. 
-If there are additional layers between the origin server where the response was generated, and the destination client, Age will be increased for the time the response spent at each step (on the **Age** header)
+## cache-control: max-age
+### Keeps your content cached as long as it's _fresh_
+___
 
-**Fresh** = responses **age** has not exceeded it’s **freshness lifetime**
 
+**max-age=N**: this means the response data remains fresh until **N** seconds after it’s generated. _(Note: “*generated*” refers to when the origin server generated the response)_ 
+
+>Note: If there are additional layers between the origin server where the response was generated and the destination client, the `Age` header will be returned with the response, representing the time the response spent at each step. 
+>
+>An `Age` header value of 0 typically indicates content was retrieved directly from the origin server.
+___
+
+So if your browser cache receives a response with a header `max-age=600`, it means that the cached data is **fresh** until that data is 10 minutes old. 
+
+**Fresh** means that a responses `current-age` has not exceeded it’s `freshness-lifetime`, which in this case is the 600ms value we assigned to `max-age`. If you prefer seeing a formula, enjoy this formula:
 ```js
 response_is_fresh = (freshness_lifetime > current_age) 
 ```
 
-[Per RFC,  9111: HTTP Caching (rfc-editor.org)](https://www.rfc-editor.org/rfc/rfc9111#name-freshness)
+( For even more specific spec, see [RFC,  9111: HTTP Caching (rfc-editor.org)](https://www.rfc-editor.org/rfc/rfc9111#name-freshness) )
+
+___
+#### Example request-response cycle:
 
 
-
-export default ({children}) => <div className='prose prose-slate dark:prose-invert'>{children}</div>
+export default ({children}) => <div className='w-full prose prose-custom prose-quoteless dark:prose-invert'>{children}</div>

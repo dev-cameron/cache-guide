@@ -3,9 +3,9 @@ import VisualizerContainer from '@/ui/VisualizerContainer'
 
 export default function Page() {
   return (
-    <div className="justify-center text-white">
+    <div className="justify-center text-white max-w-prose">
     
-        <HelloWorld className="text-accent"/>
+        <HelloWorld />
         <VisualizerContainer />
     </div>
   )

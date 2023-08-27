@@ -1,3 +1,5 @@
+const { getTextOfJSDocComment } = require('typescript');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -23,8 +25,24 @@ module.exports = {
         'accent': 'var(--accent)',
         'accent-2': 'var(--accent-2)',
         'accent-light': 'var(--accent-light)',
-        'hovercolor': 'var(--hovercolor)'
-      }
+        'hovercolor': 'var(--hovercolor)',
+        pink: {
+          '800': '#9F005B',
+        }
+      },
+      typography: ({theme}) => ({
+        "custom": {
+          css: {
+            '--tw-prose-invert-body': theme('colors.neutral'),
+            '--tw-prose-invert-bold': theme('colors.neutral-contrast'),
+            '--tw-prose-invert-headings': theme('colors.neutral-contrast'),
+            '--tw-prose-invert-links': theme('colors.accent-2'),
+            '--tw-prose-invert-pre-bg': theme('colors.neutral-accent'),
+            '--tw-prose-invert-code': theme('colors.neutral-contrast'),
+            // '--tw-prose-invert-bold': 'var(--accent)',
+          }
+        }
+      })
     },
   },
   plugins: [require('@tailwindcss/typography')],

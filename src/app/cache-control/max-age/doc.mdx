@@ -1,17 +1,20 @@
 ### cache-control: max-age
 ### Keeps your content cached, as long as it's _fresh_  
 \
-**max-age=N**: means the response data remains fresh until N seconds after it’s generated. Note “generated” refers to when the origin server generated the response. 
-If there are additional layers between the origin server where the response was generated, and the destination client, Age will be increased for the time the response spent at each step (on the **Age** header)
+**max-age=N**: this means the response data remains fresh until **N** seconds after it’s generated. Note: “*generated*” refers to when the origin server generated the response. 
+If there are additional layers between the origin server where the response was generated, and the destination client, `Age` will be increased for the time the response spent at each step (which is viewable on the `Age` header)
 
-**Fresh** = responses **age** has not exceeded it’s **freshness lifetime**
-
+**Fresh** means that a responses **age** has not exceeded it’s **freshness lifetime**. If you prefer seeing a formula, enjoy this formula:
 ```js
 response_is_fresh = (freshness_lifetime > current_age) 
 ```
 
-[Per RFC,  9111: HTTP Caching (rfc-editor.org)](https://www.rfc-editor.org/rfc/rfc9111#name-freshness)
+So if your browser cache receives a response with a header `max-age=600`, it means your browser cache is allowed to serve the cached data until that reponse is 10 minutes old. 
+
+( For even more specific spec, see [RFC,  9111: HTTP Caching (rfc-editor.org)](https://www.rfc-editor.org/rfc/rfc9111#name-freshness) )
 
 
+#### Example request-response cycle:
 
-export default ({children}) => <div className='prose prose-slate dark:prose-invert'>{children}</div>
+
+export default ({children}) => <div className='w-full prose prose-custom dark:prose-invert'>{children}</div>

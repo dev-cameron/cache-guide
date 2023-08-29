@@ -13,6 +13,12 @@
     --accent-light: #6cdd87;
     --hovercolor: #cbd5e1;
 
+    --universal-neutral-bg: black;
+    --universal-neutral: #334155;
+    --universal-neutral-accent: #111827;
+    --universal-neutral-contrast: #64748b;
+
+
     /*    
      --neutral-bg: black;
     --neutral: #334155;
@@ -37,6 +43,11 @@
     --accent-2: #166534;
     --accent-light: #6cdd87;
     --hovercolor: #888c93;
+
+    --universal-neutral-bg: black;
+    --universal-neutral: #334155;
+    --universal-neutral-accent: #111827;
+    --universal-neutral-contrast: #64748b;
   }
 }
 

@@ -26,6 +26,10 @@ module.exports = {
         'accent-2': 'var(--accent-2)',
         'accent-light': 'var(--accent-light)',
         'hovercolor': 'var(--hovercolor)',
+        'universal-neutral': 'var(--universal-neutral)',
+        'universal-neutral-bg': 'var(--universal-neutral-bg)',
+        'universal-neutral-contrast': 'var(--universal-neutral-contrast)',
+        'universal-neutral-accent': 'var(--universal-neutral-accent)',
         pink: {
           '800': '#9F005B',
         }

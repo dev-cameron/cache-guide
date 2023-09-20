@@ -1,0 +1,12 @@
+import MarkdownStyles from '@/styling/MarkdownStyles.ts'
+export default ({children}) => <div className={MarkdownStyles.prose_styling}>{children}</div>
+
+# The Cache-Control header
+
+The Cache-Control header field is used to store instructions (called directives) that inform the cache on what rules and guidelines to follow when caching data.
+
+Cache in this context can be either a private cache (the client’s browser) or a public/shared cache such as a Proxy server or CDN.
+
+**Note:** Cache-Control is a multi-value header, meaning it can accept multiple, comma-separated directives.
+
+**See all directives below (snarfed from MDN):**

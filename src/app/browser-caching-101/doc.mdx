@@ -1,0 +1,30 @@
+import VisualizerContainer from '@/ui/VisualizerContainer'
+import MarkdownStyles from '@/styling/MarkdownStyles.ts'
+import Link from "next/link";
+export default ({children}) => <div className={MarkdownStyles.prose_styling}>{children}</div>
+
+# Browser Caching: All about Performance
+Ever wondered why some websites load much faster than others? One of the key factors behind speedy websites is browser caching. 
+
+Browser caching is a method employed by web browsers to improve the efficiency of web page loading. Here's how it works: when you visit a website, your browser stores copies of various elements from that site, such as images, stylesheets, and scripts, on your computer or device. The next time you return to the same website or navigate to another page within it, your browser retrieves these stored resources instead of requesting them anew from the website's server. This results in quicker page loading times and a more seamless user experience.
+
+# How It Works
+
+Behind the scenes, browser caching relies on HTTP cache-control headers, which serve as directives for caching. These headers contain information about how long a resource should be stored in the browser's cache. Essentially, they determine when a resource should expire. When you visit a site, your browser checks these headers and determines whether to use the locally cached version of a resource or to fetch a fresh copy from the server. See an overview of these headers <Link className="hover:text-hovercolor" href={'/cache-control'}>here</
+Link>
+
+This process not only speeds up page loading but also reduces the workload on the web server and conserves bandwidth.
+
+The site uses simple animations to explain what's happening under-the-hood when your browser is caching data. Here's an example visualizer of the **max-age** header in action:  
+
+<VisualizerContainer /> 
+
+<br/><br/>
+# Different Types of Browser Caching
+
+Browser caching can be categorized into two primary types: server-side caching and client-side caching. Server-side caching involves configuring the web server to cache frequently used resources. This benefits all visitors by reducing the server's response time. On the other hand, client-side caching occurs within the user's browser, where resources are stored locally. Developers can influence both types of caching by specifying cache-related headers in the HTTP responses.
+
+# Best Practices
+
+To harness the full potential of browser caching, developers should adhere to established best practices. These include properly setting cache headers, determining appropriate cache lifetimes for resources, and employing strategies like versioning or cache busting to ensure users receive updated content when necessary. Striking the right balance between caching and dynamically generated content is essential to maintain a responsive and up-to-date website.
+

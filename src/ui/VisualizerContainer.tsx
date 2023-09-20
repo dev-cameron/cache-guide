@@ -45,7 +45,7 @@ function debounce(func, wait: number) {
 * includes clientRef, cacheRef, and serverRef
 * 
 */
-const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenario }) => {
+const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, }) => {
   const clientRef = useRef<HTMLDivElement>(null);
   const cacheRef = useRef<HTMLDivElement>(null);
   const serverRef = useRef<HTMLDivElement>(null);

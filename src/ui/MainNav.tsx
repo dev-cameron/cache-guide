@@ -1,13 +1,20 @@
 'use client';
 import '../app/globals.css'
 import { useState } from "react";
-import { items, type Item } from "@/lib/items";
+import { items } from "@/lib/items";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import clsx from "clsx";
 
 export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState('light')
+
+  const pathname = usePathname();
+
+  const closeNav = () => {
+    setIsOpen(false) 
+  }
 
   const bodyItems = items.map((section, index) => {
     return ( 
@@ -17,9 +24,11 @@ export default function MainNav() {
       </div>
       {
         section.items.map((item, itemIndex) => {
+          const isActive = pathname === `/${item.slug}`
+          
           return (
-            <div className="text-neutral-contrast py-2 font-bold" key={itemIndex}>
-              <Link className="hover:text-hovercolor" href={`/${item.slug}`}>{item.name}</Link> 
+            <div onClick={()=>closeNav()}className="text-neutral-contrast py-2 font-bold" key={itemIndex}>
+              <Link className={isActive ? "underline" : "hover:text-hovercolor"} href={`/${item.slug}`}>{item.name}</Link> 
               {/* use template literal for href w/ root prepended. just using item.slug will append slug to current route, not root */}
             </div>
           )

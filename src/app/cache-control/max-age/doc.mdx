@@ -22,5 +22,5 @@ response_is_fresh = (freshness_lifetime > current_age)
 ___
 #### Example request-response cycle:
 
-
-export default ({children}) => <div className='w-full prose prose-custom prose-quoteless dark:prose-invert'>{children}</div>
+import MarkdownStyles from '@/styling/MarkdownStyles.ts'
+export default ({children}) => <div className={MarkdownStyles.prose_styling}>{children}</div>

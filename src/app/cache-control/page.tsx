@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Content from './doc.mdx';
 
 export default function Page() {
   return (
@@ -99,6 +100,7 @@ export default function Page() {
           </tbody>
         </table>
       </div>
+      <Content />
     </div>
   )
 }

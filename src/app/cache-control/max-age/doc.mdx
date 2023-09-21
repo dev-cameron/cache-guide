@@ -1,5 +1,10 @@
-## cache-control: max-age
-### Keeps your content cached as long as it's _fresh_
+import VisualizerContainer from '@/ui/VisualizerContainer'
+import MarkdownStyles from '@/styling/MarkdownStyles.ts'
+import Link from "next/link";
+export default ({children}) => <div className="mdx-prose">{children}</div>
+
+# <Link className="hover:text-hovercolor" href={'/cache-control'}>cache-control</Link>: max-age
+## Keeps your content cached as long as it's _fresh_
 ___
 
 
@@ -22,5 +27,4 @@ response_is_fresh = (freshness_lifetime > current_age)
 ___
 #### Example request-response cycle:
 
-import MarkdownStyles from '@/styling/MarkdownStyles.ts'
-export default ({children}) => <div className="mdx-prose">{children}</div>
+<VisualizerContainer /> 

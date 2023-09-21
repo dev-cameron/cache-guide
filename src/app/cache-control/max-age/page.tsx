@@ -1,12 +1,12 @@
-import HelloWorld from './doc.mdx'
-import VisualizerContainer from '@/ui/VisualizerContainer'
+import Content from './doc.mdx'
+import { MdxWrapper } from '@/ui/MdxWrapper'
 
 export default function Page() {
   return (
-    <div className="">
-    
-        <HelloWorld />
-        <VisualizerContainer />
+    <div className="flex flex-column w-full p-8">
+        <MdxWrapper>
+          <Content />
+        </MdxWrapper>      
     </div>
   )
 }

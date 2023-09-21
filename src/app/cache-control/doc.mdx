@@ -1,5 +1,6 @@
 import MarkdownStyles from '@/styling/MarkdownStyles.ts'
-export default ({children}) => <div className="mdx-prose">{children}</div>
+import Link from "next/link";
+export default ({children}) => <div>{children}</div>
 
 # The Cache-Control header
 
@@ -9,4 +10,25 @@ Cache in this context can be either a private cache (the client’s browser) or 
 
 **Note:** Cache-Control is a multi-value header, meaning it can accept multiple, comma-separated directives.
 
-**See all directives below (snarfed from MDN):**
+See all directives below ([source: MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control)):
+
+---
+
+| Request             | Response             |
+|---------------------|----------------------|
+| <Link href="/cache-control/max-age">max-age</Link>| <Link href="/cache-control/max-age">max-age</Link> |
+| max-stale           | -                    |
+| min-fresh           | -                    |
+| -                   | s-maxage             |
+| no-cache            | no-cache             |
+| no-store            | no-store             |
+| no-transform        | no-transform         |
+| only-if-cached      | -                    |
+| -                   | must-revalidate      |
+| -                   | proxy-revalidate     |
+| -                   | must-understand      |
+| -                   | private              |
+| -                   | public               |
+| -                   | immutable            |
+| -                   | stale-while-revalidate|
+| stale-if-error      | stale-if-error       |

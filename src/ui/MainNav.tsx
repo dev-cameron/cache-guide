@@ -1,13 +1,22 @@
 'use client';
 import '../app/globals.css'
 import { useState } from "react";
-import { items, type Item } from "@/lib/items";
+import { items } from "@/lib/items";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import clsx from "clsx";
+import { useTheme } from 'next-themes';
 
 export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState('light')
+  // const [theme, setTheme] = useState('light')
+  const { theme, setTheme } = useTheme();
+
+  const pathname = usePathname();
+
+  const closeNav = () => {
+    setIsOpen(false) 
+  }
 
   const bodyItems = items.map((section, index) => {
     return ( 
@@ -17,9 +26,11 @@ export default function MainNav() {
       </div>
       {
         section.items.map((item, itemIndex) => {
+          const isActive = pathname === `/${item.slug}`
+          
           return (
-            <div className="text-neutral-contrast py-2 font-bold" key={itemIndex}>
-              <Link className="hover:text-hovercolor" href={`/${item.slug}`}>{item.name}</Link> 
+            <div onClick={()=>closeNav()}className="text-neutral-contrast py-2 font-bold" key={itemIndex}>
+              <Link className={isActive ? "underline" : "hover:text-hovercolor"} href={`/${item.slug}`}>{item.name}</Link> 
               {/* use template literal for href w/ root prepended. just using item.slug will append slug to current route, not root */}
             </div>
           )
@@ -29,10 +40,10 @@ export default function MainNav() {
   )});
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-    const html: HTMLHtmlElement | null = document.querySelector('html')
-    if (html){
-      html.className = theme;
+    if (theme === 'light') {
+      setTheme('dark')
+    } else {
+      setTheme('light')
     }
   }
 
@@ -83,7 +94,7 @@ export default function MainNav() {
         <button className="absolute bottom-4 left-4 rounded-lg shadow-inner bg-neutral-accent hover:bg-neutral text-white px-3 py-1"
           onClick={()=>toggleTheme()}
         >
-          { theme === 'light' ? (
+          { theme === 'dark' ? (
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
             </svg>

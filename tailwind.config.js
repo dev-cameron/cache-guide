@@ -1,12 +1,10 @@
-const { getTextOfJSDocComment } = require('typescript');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/ui/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx,md}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx,md}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx,md}',
+    './src/ui/**/*.{js,ts,jsx,tsx,mdx,md}',
   ],
   darkMode: 'class',
   theme: {
@@ -43,7 +41,6 @@ module.exports = {
             '--tw-prose-invert-links': theme('colors.accent-2'),
             '--tw-prose-invert-pre-bg': theme('colors.neutral-accent'),
             '--tw-prose-invert-code': theme('colors.neutral-contrast'),
-            // '--tw-prose-invert-bold': 'var(--accent)',
           }
         },
         "quoteless": {

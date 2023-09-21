@@ -2,13 +2,11 @@
 
 import clsx from 'clsx';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { cacheScenarios, type Frame, type Scenario } from '@/lib/scenarios';
+import { cacheScenarios, type Scenario } from '@/lib/scenarios';
 
 
 interface VisualizerContainerProps {
-  children?: React.ReactNode;
-  directive?: string;
-  frames?: Array<Frame>;
+  scenario: string;
 }
 
 interface AnimBoxProps {
@@ -30,9 +28,17 @@ interface ControlBoxProps {
 }
 
 // debounce function to prevent too many calls to getPosition
-function debounce(func, wait: number) {
-  let timeout: NodeJS.Timeout;
-  return function(...args) {
+// function debounce(func, wait: number) {
+//   let timeout: NodeJS.Timeout;
+//   return function(...args) {
+//     clearTimeout(timeout);
+//     timeout = setTimeout(() => func.apply(this, args), wait);
+//   };
+// }
+
+function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+  let timeout: ReturnType<typeof setTimeout>;
+  return function(this: ThisParameterType<T>, ...args: Parameters<T>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
@@ -45,12 +51,12 @@ function debounce(func, wait: number) {
 * includes clientRef, cacheRef, and serverRef
 * 
 */
-const AnimBox: React.FC<AnimBoxProps> = ({ activeNode, activeFrame, activeScenario }) => {
+const AnimBox: React.FC<AnimBoxProps> = ({ activeNode }) => {
   const clientRef = useRef<HTMLDivElement>(null);
   const cacheRef = useRef<HTMLDivElement>(null);
   const serverRef = useRef<HTMLDivElement>(null);
 
-  const [x, setX] = useState<number | undefined>();
+  const [x, setX] = useState<number>(0);
 
   /*
   * getPosition finds the X offset of the current activeNode (client, cache, or server div)
@@ -183,7 +189,7 @@ const InfoBox: React.FC<InfoBoxProps> = ({ activeScenario, activeFrame }) =>{
   )
 }
 
-const ControlBox: React.FC<ControlBoxProps> = ( { updateActiveFrame, toggleActiveNode, frameCount, activeFrame } ) => {
+const ControlBox: React.FC<ControlBoxProps> = ( { updateActiveFrame, frameCount, activeFrame } ) => {
   const frameDots = [];
   for (let i = 0; i < frameCount; i++) {
     frameDots.push(
@@ -207,10 +213,10 @@ const ControlBox: React.FC<ControlBoxProps> = ( { updateActiveFrame, toggleActiv
   )
 }
 
-export default function VisualizerContainer( { children, directive, frames }: VisualizerContainerProps) {
+export default function VisualizerContainer( { scenario }: VisualizerContainerProps) {
   const [activeNode, setActiveNode] = useState('clientRef');
 
-  const [activeScenario, setActiveScenario] = useState(cacheScenarios['max-age']);
+  const activeScenario = cacheScenarios[scenario];
   const [activeFrame, setActiveFrame] = useState(0);
   const [frameCount, setFrameCount] = useState(0);
 

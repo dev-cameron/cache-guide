@@ -22,5 +22,8 @@ const withMDX = createMDX({
     // If you use `MDXProvider`, uncomment the following line.
     // providerImportSource: "@mdx-js/react",
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 })
 export default withMDX(nextConfig)

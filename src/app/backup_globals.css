@@ -9,7 +9,7 @@
 }
 
 @layer base {
-  :root, .dark{
+  :root, .dark {
     --neutral-bg: black;
     --neutral: #334155;
     --neutral-accent: #111827;

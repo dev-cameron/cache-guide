@@ -3,7 +3,7 @@ import VisualizerContainer from '@/ui/VisualizerContainer'
 
 export default function Page() {
   return (
-    <div className="justify-center text-white max-w-prose">
+    <div className="">
     
         <HelloWorld />
         <VisualizerContainer />

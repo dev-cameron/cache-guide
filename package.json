@@ -1,6 +1,6 @@
 {
-  "name": "hash_guide",
-  "version": "0.1.0",
+  "name": "cache_guide",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

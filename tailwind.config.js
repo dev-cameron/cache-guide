@@ -33,6 +33,26 @@ module.exports = {
         }
       },
       typography: ({theme}) => ({
+        "DEFAULT": {
+          css:{
+            code: {
+              '&::before': {
+                content: '"" !important',
+              },
+              '&::after': {
+                content: '"" !important',
+              },
+              // Additional styles for GitHub-like inline code
+              backgroundColor: theme('colors.universal-neutral-accent'),
+              color: 'white',
+              padding: '0.15em 0.25em',
+              borderRadius: '0.25em',
+              // fontFamily: 'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+              fontSize: '0.875em',
+              fontWeight: '200',
+            }
+          }
+        },
         "custom": {
           css: {
             '--tw-prose-invert-body': theme('colors.neutral'),

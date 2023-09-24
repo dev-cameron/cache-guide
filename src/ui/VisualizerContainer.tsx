@@ -263,10 +263,12 @@ export default function VisualizerContainer( { scenario }: VisualizerContainerPr
   }
   
   return (
-    <div className="w-full rounded-lg overflow-hidden bg-universal-neutral-accent bg-grid-pattern mt-4 p-2 shadow-inner">
+    <div className="w-full rounded-lg overflow-hidden bg-universal-neutral-accent mt-4 shadow-inner">
+      <div className="bg-grid-pattern p-2">
       <AnimBox activeNode={activeNode} activeFrame={activeFrame} activeScenario={activeScenario}/>
       <InfoBox activeScenario={activeScenario} activeFrame={activeFrame} />
       <ControlBox toggleActiveNode={toggleActiveNode} updateActiveFrame={updateActiveFrame} activeFrame={activeFrame} frameCount={frameCount}/>
+      </div>
     </div>
   )
 }

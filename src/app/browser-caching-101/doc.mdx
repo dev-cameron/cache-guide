@@ -1,5 +1,5 @@
 import VisualizerContainer from '@/ui/VisualizerContainer'
-import MarkdownStyles from '@/styling/MarkdownStyles.ts'
+import Button from '@/ui/Button'
 import Link from "next/link";
 export default ({children}) => <div className="mdx-prose">{children}</div>
 
@@ -27,3 +27,7 @@ Browser caching can be categorized into two primary types: server-side caching a
 # Best Practices
 
 To harness the full potential of browser caching, developers should adhere to established best practices. These include properly setting cache headers, determining appropriate cache lifetimes for resources, and employing strategies like versioning or cache busting to ensure users receive updated content when necessary. Striking the right balance between caching and dynamically generated content is essential to maintain a responsive and up-to-date website.
+
+<Button>
+  <Link className="flex items-center justify-center !no-underline dark:text-black h-full w-full" href={'/cache-control'}>Next: Headers</Link>
+</Button>

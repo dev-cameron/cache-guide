@@ -1,0 +1,30 @@
+import VisualizerContainer from '@/ui/VisualizerContainer'
+import MarkdownStyles from '@/styling/MarkdownStyles.ts'
+import Link from "next/link";
+export default ({children}) => <div className="mdx-prose">{children}</div>
+
+# <Link className="hover:text-hovercolor" href={'/cache-control'}>cache-control</Link>: max-stale
+
+## max-stale
+
+The `max-stale` directive allows clients to indicate their willingness to accept cached responses, even if those responses have become stale or outdated. When a client includes the `max-stale=N` request directive, it signals to the server and caching infrastructure that it is open to receiving cached responses that are no more than N seconds past their prime.
+
+### HTTP Usage
+
+In an HTTP **request**, you might encounter the `max-stale` directive in the `Cache-Control` header, where it is specified as `Cache-Control: max-stale=3600`. This example signifies that the client is willing to accept cached responses that may have expired up to one hour ago (3600 seconds) based on the `max-age` value provided in the response and the `Age` header indicating how long the response has been cached.
+
+### Use Case
+
+The `max-stale` directive serves an important purpose, especially in situations where the origin server may be temporarily inaccessible or slow to respond. In such cases, the client can use this directive to extend the usability of cached content. Even if the cached response has technically exceeded its freshness, the client may still find value in receiving slightly outdated data rather than experiencing delays or errors due to server unavailability.
+
+For instance, consider an online news website where the latest headlines are crucial. If the origin server experiences a temporary hiccup or slow response times, the client can still serve cached news articles that are a bit older but provide a reasonable user experience. This helps maintain website performance and availability during temporary server issues.
+
+### Important Note
+
+It's important to be aware that while the `max-stale` directive is a powerful tool, it comes with a caveat: major web browsers do not uniformly support requests with `max-stale`. This means that the effectiveness and availability of this directive may vary across different client applications. Therefore, it's essential to consider the compatibility of this directive when implementing it in your HTTP requests and caching strategies.
+
+
+### What does it look like?
+Now that we've explained `max-age`, let's view a sample request-response cycle involving this header:
+
+<VisualizerContainer scenario="max-stale" /> 

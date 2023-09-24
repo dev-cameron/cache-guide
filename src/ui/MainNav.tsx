@@ -12,7 +12,7 @@ export default function MainNav() {
   // const [theme, setTheme] = useState('light')
   const { theme, setTheme } = useTheme();
 
-  const pathname = usePathname();
+  const pathname: string = usePathname();
 
   const closeNav = () => {
     setIsOpen(false) 
@@ -26,7 +26,7 @@ export default function MainNav() {
       </div>
       {
         section.items.map((item, itemIndex) => {
-          const isActive = pathname === `/${item.slug}`
+          const isActive = pathname.includes(item.slug);
           
           return (
             <div onClick={()=>closeNav()}className="text-neutral-contrast py-2 font-bold" key={itemIndex}>

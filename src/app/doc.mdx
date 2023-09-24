@@ -1,6 +1,7 @@
 import MarkdownStyles from '@/styling/MarkdownStyles.ts'
 import VisualizerContainer from '@/ui/VisualizerContainer'
 import Link from "next/link";
+import Button from '@/ui/Button'
 export default ({children}) => <div>{children}</div>
 
 # cache-guide
@@ -11,7 +12,13 @@ The site uses simple animations to explain what's happening under-the-hood when 
 <VisualizerContainer scenario="max-age" />
 <br/>
 
-To get started learning, visit <Link className="hover:text-hovercolor" href={'/browser-caching-101'}>Browser Caching 101</Link>
+Ready to get started learning?
+<div className="flex space-x-4">
+  <Button>
+    <Link className="flex items-center justify-center text-center !no-underline dark:text-black h-full w-full" href={'/browser-caching-101'}>Next: Caching 101</Link>
+  </Button>
+</div>
+
 
 ---
 

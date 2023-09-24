@@ -126,6 +126,85 @@ export const cacheScenarios: ScenarioGroup = {
       },
     ],
     description: 'The max-age directive is the simplest way to specify how long a resource should be cached. It is a relative time in seconds from the time of the request.'
+  },
+  'max-stale': {
+    "frames": [
+      {
+        "activeNode": "clientRef",
+        "type": "request",
+        "description": "User enters 'https://example.com' in the browser's address bar.",
+        "httpObj": {
+          "headers": {
+            "request": "GET /index.html"
+          }
+        }
+      },
+      {
+        "activeNode": "cacheRef",
+        "type": "request",
+        "description": "Content not in cache at this time, so browser sends request to server.",
+        "httpObj": {
+          "headers": {
+            "request": "GET /index.html"
+          }
+        }
+      },
+      {
+        "activeNode": "serverRef",
+        "type": "response",
+        "description": "Server receives and processes the GET request, responding with 'index.html' and max-age directive.",
+        "httpObj": {
+          "headers": {
+            "response": "200 OK",
+            "cache-control": "max-age=3600"
+          }
+        }
+      },
+      {
+        "activeNode": "clientRef",
+        "type": "request",
+        "description": "User returns to 'https://example.com' within 30 minutes.",
+        "httpObj": {
+          "headers": {
+            "request": "GET /index.html"
+          }
+        }
+      },
+      {
+        "activeNode": "cacheRef",
+        "type": "response",
+        "description": "Browser serves the cached 'index.html' since it's within the max-age limit.",
+        "httpObj": {
+          "headers": {
+            "response": "200 OK",
+            "cache-control": "max-age=3600"
+          }
+        }
+      },
+      {
+        "activeNode": "clientRef",
+        "type": "request",
+        "description": "User clicks 'Refresh' after 2 hours, requesting a potentially stale copy. Client request includes max-stale directive.",
+        "httpObj": {
+          "headers": {
+            "request": "GET /index.html",
+            "cache-control": "max-stale=14400"
+          }
+        }
+      },
+      {
+        "activeNode": "cacheRef",
+        "type": "response",
+        "description": "Browser provides the cached 'index.html' since it's within the max-stale limit.",
+        "httpObj": {
+          "headers": {
+            "response": "200 OK",
+            "cache-control": "max-age=3600"
+          }
+        }
+      }
+    ],
+    "description": "ExampleHTTP request-response cycle using max-age and max-stale directives."
   }
 }
 
